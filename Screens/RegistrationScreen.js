@@ -57,14 +57,16 @@ const showButton = (
     return (
         <TouchableWithoutFeedback
         onPress = {() => Keyboard.dismiss()}>
-        <KeyboardAvoidingView 
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
-            style = {styles.container}>
+            <>
             <Image 
             source = {require("../assets/images/PhotoBG.jpg")}
             resizeMode="cover"
             style={styles.image}
             />
+        <KeyboardAvoidingView 
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
+            style = {styles.container}>
+            
             <View
             style={styles.formContainer
             }>
@@ -124,6 +126,7 @@ const showButton = (
             </View>
             </View>
         </KeyboardAvoidingView>
+        </>
         </TouchableWithoutFeedback>
     );
 };

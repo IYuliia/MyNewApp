@@ -46,22 +46,24 @@ const showButton = (
 
     return (
         <TouchableWithoutFeedback
-        onPress = {() => Keyboard.dismiss()}>
-        <KeyboardAvoidingView 
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
-            style = {styles.container}>
+            onPress = {() => Keyboard.dismiss()}>
+            <>
             <Image 
-            source = {require("../assets/images/PhotoBG.jpg")}
-            resizeMode="cover"
-            style={styles.image}
+                source = {require("../assets/images/PhotoBG.jpg")}
+                resizeMode="cover"
+                style={styles.image}
             />
-            <View
-            style={styles.formContainer
-            }>
+            <KeyboardAvoidingView 
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
+                style = {styles.container}>
+            
+                <View
+                    style={styles.formContainer
+                }>
                 <Text style={styles.title}>Увійти</Text>
 
-                <View 
-                style={[styles.innerContainer, styles.inputContainer]}>
+                    <View 
+                    style={[styles.innerContainer, styles.inputContainer]}>
 
                     <Input 
                     value = {email}
@@ -101,6 +103,7 @@ const showButton = (
             </View>
             </View>
         </KeyboardAvoidingView>
+        </>
         </TouchableWithoutFeedback>
     );
 };
