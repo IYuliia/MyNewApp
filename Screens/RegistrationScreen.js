@@ -1,20 +1,29 @@
-import { Dimensions, Image, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import { Alert, Dimensions, Image, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 import { colors } from "../styles/global";
 
 import Input from "../components/Input";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import Button from "../components/button";
 import Avatar from "../components/avatar";
 
 
 const { width: SCREEN_WIDTH } = Dimensions.get("screen");
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation, route}) => {
 
 const [login, setLogin] = useState("");
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+
+// useEffect(() => {
+//     console.log(route);
+//     Alert.alert(route?.params?.userEmail)
+// }, []);
+
+useLayoutEffect(()=> {
+    navigation.setOptions({ title: "Hello"})
+})
 
 const handleAddAvatar = (value) => {
     console.log("Add avatar");
@@ -37,12 +46,12 @@ const showPassword = () => {
 }
 
 const onLogin = () => {
-    console.log("login")
-    // navigation.navigate('Home');
+    // console.log("login")
+    navigation.navigate('Login');
 };
 
 const onSignUp = () => {
-    console.log("sign up")
+    // console.log("sign up")
     // navigation.navigate('Signup', { userEmail: email })
 };
 
@@ -104,7 +113,7 @@ const showButton = (
                     />
                 </View>
                 <View style={[styles.innerContainer, styles.buttonContainer]}>
-                    <Button onPress={onLogin}>
+                    <Button onPress={onSignUp}>
                         <Text 
                         style={[styles.baseText, styles.loginButtonText]}
                         >
@@ -117,7 +126,7 @@ const showButton = (
                     style={[styles.baseText, styles.passwordButtonText]}
                     >
                     Вже є аккаунт?
-                        <TouchableWithoutFeedback onPress={onSignUp}>
+                        <TouchableWithoutFeedback onPress={onLogin}>
                             <Text> Увійти</Text>
                         </TouchableWithoutFeedback>
                     </Text>
@@ -163,12 +172,12 @@ const styles = StyleSheet.create({
     },
     formContainer: {
         width: SCREEN_WIDTH,
-        height: "67%",
+        height: "70%",
         backgroundColor: colors.white,
         borderTopRightRadius: 25,
         borderTopLeftRadius: 25,
         paddingHorizontal: 16,
-        paddingTop: 32,
+        // paddingTop: 92,
     },
     title: {
         fontSize: 30,

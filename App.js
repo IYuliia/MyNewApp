@@ -3,10 +3,12 @@ import { ActivityIndicator, View } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
-// import { NavigationContainer } from "@react-navigation/native";
-// import BottomTabNavigator from './navigation/BottomTabNavigator';
-import LoginScreen from './Screens/LoginScreen';
-import RegistrationScreen from './Screens/RegistrationScreen';
+import { NavigationContainer, StackActions } from "@react-navigation/native";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+import BottomTabNavigator from './navigation/BottomTabNavigator';
+import StackNavigator from './navigation/StackNavigator';
+
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,18 +30,14 @@ export default function App() {
     return <ActivityIndicator />;
   }
   
+
   return (
-    <LoginScreen />
-  )
-
-  // return (
-  //   <RegistrationScreen />
-  // )
-
-  // return (
-  //     <NavigationContainer>
-  //       <BottomTabNavigator />
-  //     </NavigationContainer>
-  // );
+    <GestureHandlerRootView style={{ flex: 1 }}>
+    <NavigationContainer>
+      {/* <BottomTabNavigator /> */}
+      <StackNavigator />
+    </NavigationContainer>
+  </GestureHandlerRootView>
+  );
 }
 

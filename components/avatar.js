@@ -57,6 +57,6 @@ import {
       width: 120,
       height: 120,
       borderRadius: 16,
-      top: -30,
+      top: 0,
     }
   });

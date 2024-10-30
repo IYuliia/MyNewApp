@@ -8,7 +8,7 @@ import Button from "../components/button";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("screen");
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation, route}) => {
 
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
@@ -27,13 +27,14 @@ const showPassword = () => {
 }
 
 const onLogin = () => {
-    console.log("login")
-    // navigation.navigate('Home');
+    // console.log("login")
+    navigation.navigate('LoggedIn');
 };
 
 const onSignUp = () => {
-    console.log("sign up")
-    // navigation.navigate('Signup', { userEmail: email })
+    // console.log("sign up")
+    // navigation.navigate('Registration', {userEmail: email})
+    navigation.navigate('Registration')
 };
 
 const showButton = (
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
     },
     formContainer: {
         width: SCREEN_WIDTH,
-        height: "55%",
+        height: "50%",
         backgroundColor: colors.white,
         borderTopRightRadius: 25,
         borderTopLeftRadius: 25,
