@@ -1,8 +1,15 @@
-import { View } from "react-native"
+import React, { useEffect } from 'react';
+import { View, Text } from 'react-native';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+    useEffect(() => {
+        navigation.navigate('Posts');
+    }, [navigation]);
+
     return (
-        <View style= {{ flex: 1, backgroundColor: "green" }} />
+        <View>
+            <Text>Loading...</Text>
+        </View>
     );
 };
 
