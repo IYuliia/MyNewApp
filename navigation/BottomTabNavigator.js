@@ -35,7 +35,7 @@ const BottomTabNavigator = () => {
               }}
             />
           ),
-          headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+        //   headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
         //   tabBarIcon: ({ focused }) => (
         //     <Ionicons
         //       name="heart-circle"
@@ -60,7 +60,7 @@ const BottomTabNavigator = () => {
               }}
             />
           ),
-          headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+        //   headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
           tabBarIcon: ({ focused }) => (
             <PostsButton
               focused={focused}
@@ -79,6 +79,7 @@ const BottomTabNavigator = () => {
         options={{
           title: "Створити публікацію",
           tabBarLabel: "",
+          headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
           tabBarIcon: ({ focused }) => (
             <AddButton
               onPress={() => {
