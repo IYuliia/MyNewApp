@@ -10,6 +10,7 @@ import ProfileScreen from "../Screens/ProfileScreen";
 import PostsButton from "../components/PostsButton";
 import AddButton from "../components/AddButton";
 import ProfileButton from "../components/ProfileButton";
+import { colors } from "../styles/global";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,6 +21,15 @@ const BottomTabNavigator = () => {
       screenOptions={{
         headerRightContainerStyle: { paddingRight: 16 },
         headerLeftContainerStyle: { paddingLeft: 16 },
+        tabBarStyle: {
+            borderTopWidth: 1, 
+            borderTopColor: colors.border_grey, 
+            paddingTop: 9, 
+          },
+          headerStyle: {
+            borderBottomWidth: 1,
+            borderBottomColor: colors.border_grey,
+          },
         // tabBarLabel: "",
       }}
     >
@@ -35,6 +45,7 @@ const BottomTabNavigator = () => {
               }}
             />
           ),
+          
         //   headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
         //   tabBarIcon: ({ focused }) => (
         //     <Ionicons
@@ -53,6 +64,7 @@ const BottomTabNavigator = () => {
         options={({ navigation }) => ({
           title: "Публікації",
           tabBarLabel: "",
+          
           headerRight: () => (
             <LogoutButton
               onPress={() => {

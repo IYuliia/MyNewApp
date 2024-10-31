@@ -16,9 +16,9 @@ const PostsScreen = () => {
     {
       id: "2",
       image: require("../assets/images/postImage_2.png"),
-      title: "Beautiful Mountains",
+      title: "Захід на Чорному морі",
       commentsAmount: 3,
-      location: "Carpathian Mountains, Ukraine",
+      location: "Black Sea, Ukraine",
     },
   ];
 
