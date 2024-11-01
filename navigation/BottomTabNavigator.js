@@ -91,7 +91,8 @@ const BottomTabNavigator = () => {
         options={{
           title: "Створити публікацію",
           tabBarLabel: "",
-          headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+          tabBarStyle: { display: 'none' },
+          headerLeft: () => <BackButton />,
           tabBarIcon: ({ focused }) => (
             <AddButton
               onPress={() => {

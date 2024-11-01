@@ -11,10 +11,9 @@ import {
       <View style={styles.photoContainer}>
         <View style={styles.imgWrap}>
           <Image style={styles.photo} source={image} />
-  
           <TouchableWithoutFeedback onPress={OnClick}>
             <View style={styles.iconWrap}>
-              <Image style={styles.icon} source={icon} />
+              {icon}
             </View>
           </TouchableWithoutFeedback>
         </View>

@@ -6,6 +6,8 @@ import { colors } from "../styles/global";
 import CommentsOrangeIcon from "../icons/CommentsOrangeIcon";
 import LocationIcon from "../icons/LocationIcon";
 import LikeIcon from "../icons/LikeIcon";
+import LogoutButton from "../components/logoutButton";
+import CloseIcon from "../icons/CloseIcon";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("screen");
 
@@ -68,10 +70,8 @@ const ProfileScreen = () => {
         style={styles.image}
       />
       <View style={styles.formContainer}>
-        <Avatar
-          image={require("../assets/images/avatar.png")}
-          icon={require("../assets/images/add.png")}
-        />
+        <Avatar image={require("../assets/images/avatar.png")} icon={<CloseIcon />} />
+        <LogoutButton style={styles.logoutButton}  onPress={() => console.log('Logout')}/>
         <View style={styles.wrapper}>
           <Text style={styles.title}>Natali Romanova</Text>
         </View>
@@ -109,9 +109,15 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
     paddingHorizontal: 16,
+    position: "relative",
   },
   wrapper: {
     marginTop: 92,
+  },
+  logoutButton: {
+    position: "absolute",
+    top: 24,
+    right: 16,
   },
   title: {
     fontSize: 30,

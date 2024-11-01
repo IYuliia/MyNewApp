@@ -5,6 +5,8 @@ import CommentsIcon from "../icons/CommentsIcon";
 import LocationIcon from "../icons/LocationIcon";
 
 const PostsScreen = () => {
+  
+
   const posts = [
     {
       id: "1",

@@ -5,6 +5,7 @@ import Input from "../components/Input";
 import { useEffect, useLayoutEffect, useState } from "react";
 import Button from "../components/button";
 import Avatar from "../components/avatar";
+import CloseIcon from "../icons/CloseIcon";
 
 
 const { width: SCREEN_WIDTH } = Dimensions.get("screen");
@@ -79,11 +80,7 @@ const showButton = (
             <View
             style={styles.formContainer
             }>
-                <Avatar
-              image={require("../assets/images/avatar.png")}
-              icon={require("../assets/images/add.png")}
-              OnClick={handleAddAvatar}
-            />
+                 <Avatar image={require("../assets/images/avatar.png")} icon={<CloseIcon />} />
             <View style={styles.wrapper}>
                 <Text style={styles.title}>Реєстрація</Text>
 
