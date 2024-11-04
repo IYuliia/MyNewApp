@@ -11,13 +11,15 @@ import PostsButton from "../components/PostsButton";
 import AddButton from "../components/AddButton";
 import ProfileButton from "../components/ProfileButton";
 import { colors } from "../styles/global";
+import MapScreen from "../Screens/MapScreen";
+import CameraScreen from "../Screens/CameraScreen";
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Posts"
       screenOptions={{
         headerRightContainerStyle: { paddingRight: 16 },
         headerLeftContainerStyle: { paddingLeft: 16 },
@@ -33,7 +35,7 @@ const BottomTabNavigator = () => {
         // tabBarLabel: "",
       }}
     >
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={({ navigation }) => ({
@@ -57,7 +59,7 @@ const BottomTabNavigator = () => {
           tabBarActiveTintColor: "red",
           tabBarButton: () => null,
         })}
-      />
+      /> */}
       <Tab.Screen
         name="Posts"
         component={PostsScreen}
@@ -114,6 +116,28 @@ const BottomTabNavigator = () => {
               onPress={() => console.log("Profile button pressed")}
             />
           ),
+        }}
+      />
+      <Tab.Screen
+        name="Map"
+        component={MapScreen}
+        options={{
+          title: "Мапа",
+          tabBarLabel: "",
+          tabBarStyle: { display: 'none' },
+          headerLeft: () => <BackButton />,
+          tabBarButton: () => null,
+        }}
+      />
+      <Tab.Screen
+        name="Camera"
+        component={CameraScreen}
+        options={{
+          title: "Камера",
+          tabBarLabel: "",
+          tabBarStyle: { display: 'none' },
+          headerLeft: () => <BackButton />,
+          tabBarButton: () => null,
         }}
       />
     </Tab.Navigator>
