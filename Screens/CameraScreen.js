@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Text, View, TouchableOpacity, StyleSheet, Button } from "react-native";
-import { CameraView, useCameraPermissions } from "expo-camera";
+import { Camera, useCameraPermissions } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 
 export default function CameraScreen() {
@@ -29,16 +29,28 @@ export default function CameraScreen() {
   };
 
   const takePhoto = async () => {
-    // if (!camera) return;
+    if (!camera) return;
 
-    // const image = await camera?.current?.takePictureAsync();
-    // await MediaLibrary.saveToLibraryAsync(image.uri);
-    // console.log('image', image)
+    const image = await camera?.current?.takePictureAsync();
+    await MediaLibrary.saveToLibraryAsync(image.uri);
+    console.log('image', image)
   }
+
+  // const takePhoto = async () => {
+  //   if (camera.current) {
+  //     const image = await camera.current.takePictureAsync();
+  //     if (image && image.uri) {
+  //       await MediaLibrary.saveToLibraryAsync(image.uri);
+  //       console.log('Image saved to library:', image);
+  //     } else {
+  //       console.log('Image capture failed');
+  //     }
+  //   }
+  // };
 
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera} facing={facing}>
+      <Camera ref={camera} style={styles.camera} facing={facing}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
             <Text style={styles.text}>Flip Camera</Text>
@@ -48,7 +60,7 @@ export default function CameraScreen() {
             <Text style={styles.text}>Take Photo</Text>
           </TouchableOpacity>
         </View>
-      </CameraView>
+      </Camera>
     </View>
   );
 }

@@ -2,10 +2,9 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { colors } from "../styles/global";
 import CameraIcon from "../icons/CameraIcon";
 import TrashIcon from "../icons/TrashIcon";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Button } from "react-native";
-import { CameraView, useCameraPermissions } from "expo-camera";
-import * as MediaLibrary from "expo-media-library";
+import { useRoute } from "@react-navigation/native";
 
 import DisabledButton from "../components/DisabledButton";
 import PostInput from "../components/PostInput";
@@ -15,40 +14,8 @@ import { useNavigation } from "@react-navigation/native";
 const CreatePostsScreen = () => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
-  const navigation = useNavigation();
-  const [facing, setFacing] = useState('back');
-  const [permission, requestPermission] = useCameraPermissions();
-  const [permissionResponse, requestLibraryPermission] = MediaLibrary.usePermissions();
-  const camera = useRef();
   const [capturedImage, setCapturedImage] = useState(null);
-
-  if (!permission) {
-    // Camera permissions are still loading.
-    return <View />;
-  }
-
-  if (!permission.granted) {
-    // Camera permissions are not granted yet.
-    return (
-      <View style={styles.container}>
-        <Text style={styles.message}>We need your permission to show the camera</Text>
-        <Button onPress={requestPermission} title="Grant permission" />
-      </View>
-    );
-  }
-
-  function toggleCameraFacing() {
-    setFacing(current => (current === 'back' ? 'front' : 'back'));
-  };
-
-
-  const takePhoto = async () => {
-    if (!camera) return
-          const photo = await camera?.current?.takePictureAsync();
-          setCapturedImage(photo.uri);
-          await MediaLibrary.saveToLibraryAsync(photo.uri);
-      };
-
+  const navigation = useNavigation();
 
   const handleTitleChange = (text) => setTitle(text);
   const handleLocationChange = (text) => setLocation(text);
@@ -61,36 +28,25 @@ const CreatePostsScreen = () => {
     console.log("Delete");
   };
 
-//   const openCameraScreen = () => {
-//     navigation.navigate("Camera"); 
-//   };
+  // const openCameraScreen = () => {
+  //   navigation.navigate("Camera", {
+  //     onReturnImage: (imageUri) => setCapturedImage(imageUri)
+  //   });
+  // };
+
+  const openCameraScreen = () => {
+    navigation.navigate("Camera");
+  };
 
   return (
     <View style={styles.container}>
-      {/* <Image style={styles.postImage} source={require("../assets/images/postImage_1.png")} /> */}
-      {/* <Image style={styles.placeholder} />
+      <Image style={styles.placeholder} />
       <View style={styles.placeholderOverlay}>
         <TouchableOpacity onPress={openCameraScreen}>
-        <View style={styles.placeholderCircle}>
-          <CameraIcon />
-        </View>
+          <View style={styles.placeholderCircle}>
+            <CameraIcon />
+          </View>
         </TouchableOpacity>
-      </View> */}
-      <View style={styles.cameraContainer}>
-//         {capturedImage ? (
-          <Image source={{ uri: capturedImage }} style={styles.imagePreview} />
-        ) : (
-          <CameraView style={styles.camera} type={facing}>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-                <Text style={styles.text}>Flip</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button} onPress={takePhoto}>
-                <CameraIcon />
-              </TouchableOpacity>
-            </View>
-          </CameraView>
-        )}
       </View>
       <Text style={styles.text}>Завантажте фото</Text>
       <View style={[styles.innerContainer, styles.inputContainer]}>
@@ -100,15 +56,13 @@ const CreatePostsScreen = () => {
           placeholder="Назва..."
           onTextChange={handleTitleChange}
         />
-        
-          <PostInput
-            value={location}
-            placeholder="Місцевість..."
-            leftButton={<LocationIcon />}
-            // outerStyles={styles.passwordButton}
-            onTextChange={handleLocationChange}
-          />
-        
+
+        <PostInput
+          value={location}
+          placeholder="Місцевість..."
+          leftButton={<LocationIcon />}
+          onTextChange={handleLocationChange}
+        />
       </View>
       <View style={styles.buttonContainer}>
         <DisabledButton onPress={onPublish}>
@@ -193,41 +147,37 @@ const styles = StyleSheet.create({
     transform: [{ translateX: -25 }],
   },
   cameraContainer: {
-        width: "100%",
-        height: 240,
-        backgroundColor: colors.light_grey,
-        borderRadius: 8,
-        overflow: "hidden",
-        marginBottom: 16,
-      },
-      camera: {
-        flex: 1,
-        justifyContent: "flex-end",
-      },
-      imagePreview: {
-        width: "100%",
-        height: "100%",
-        borderRadius: 8,
-      },
-      buttonContainer: {
-        flexDirection: "row",
-        justifyContent: "center",
-        paddingBottom: 20,
-        backgroundColor: "transparent",
-      },
-      button: {
-        backgroundColor: "white",
-        padding: 10,
-        margin: 10,
-        borderRadius: 50,
-      },
+    width: "100%",
+    height: 240,
+    backgroundColor: colors.light_grey,
+    borderRadius: 8,
+    overflow: "hidden",
+    marginBottom: 16,
+  },
+  camera: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
+  imagePreview: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 8,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingBottom: 20,
+    backgroundColor: "transparent",
+  },
+  button: {
+    backgroundColor: "white",
+    padding: 10,
+    margin: 10,
+    borderRadius: 50,
+  },
 });
 
 export default CreatePostsScreen;
-
-
-
-
 
 // import { Camera, useCameraPermissions } from "expo-camera";
 // import { useRef, useState, useEffect } from "react";
